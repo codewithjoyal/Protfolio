@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Joyal Joy - Software Engineer Portfolio. Discover my projects, skills, and experience in building modern web applications.">
+    <title>Joyal Joy | Software Engineer</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Background Animation Elements -->
+    <div class="bg-shape shape-1"></div>
+    <div class="bg-shape shape-2"></div>
+    <div class="bg-shape shape-3"></div>
+    
+    <!-- Mouse Tracker Particles -->
+    <canvas id="particle-canvas"></canvas>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#hero" class="logo">Joyal Joy<span>.</span></a>
+            <div class="nav-links">
+                <a href="#about" class="nav-link">About</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#experience" class="nav-link">Experience</a>
+                <a href="#contact" class="nav-link btn-small">Let's Talk</a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="hero section">
+            <div class="hero-content fade-up">
+                <div class="badge">🚀 Software Engineer</div>
+                <h1 class="hero-title">
+                    Hi, I'm <span class="gradient-text">Joyal Joy</span>
+                </h1>
+                <h2 class="hero-subtitle">Crafting the Web</h2>
+                <p class="hero-description">
+                    Passionate about building scalable, efficient, and visually appealing web applications that solve real-world problems. Experienced in .NET, React, and modern web tech.
+                </p>
+                <div class="hero-actions">
+                    <a href="#projects" class="btn btn-primary">View My Work <i class="fa-solid fa-arrow-right"></i></a>
+                    <a href="#contact" class="btn btn-secondary">Contact Me</a>
+                    <a href="./assets/Joyal_Joy_CV.pdf" download class="btn btn-outline" title="Download my Curriculum Vitae">Download CV <i class="fa-solid fa-download" style="margin-left: 5px;"></i></a>
+                </div>
+                <div class="hero-socials">
+                    <a href="https://github.com/codewithjoyal" target="_blank" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/codewithjoyal/" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="hero-visual fade-left tilt-card" id="hero-tilt">
+                <!-- Glowing 3D Profile Card -->
+                <div class="profile-card glass-panel">
+                    <div class="profile-glow"></div>
+                    <div class="profile-content">
+                        <div class="profile-avatar">
+                            <i class="fa-solid fa-user-astronaut"></i>
+                        </div>
+                        <h3>Joyal Joy</h3>
+                        <p class="profile-role">Full Stack Developer</p>
+                        <div class="profile-tags">
+                            <span>.NET</span>
+                            <span>React</span>
+                            <span>Python</span>
+                            <span>SQL</span>
+                        </div>
+                        <div class="profile-stats">
+                            <div><strong>15+</strong> Projects</div>
+                            <div><strong>3+</strong> Yrs Exp</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about section">
+            <div class="section-header fade-up">
+                <h2>About <span class="gradient-text">Me</span></h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="about-content grid-2-col">
+                <div class="about-text glass-panel p-lg fade-right">
+                    <h3>My Journey</h3>
+                    <p>I am a software engineer with a deep-rooted passion for creating scalable, efficient, and visually stunning applications. My journey in tech started with a fascination for how things work on the web, which evolved into a full-fledged career in software development.</p>
+                    <p>With experience bridging frontend and backend technologies, I enjoy the complete lifecycle of bringing an idea from a simple wireframe to a robust, deployed application. I'm a continuous learner, always exploring new frameworks, patterns, and architectural designs to deliver top-tier user experiences.</p>
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">3+</span>
+                            <span class="stat-label">Years of Focus</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">15+</span>
+                            <span class="stat-label">Projects Built</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">1</span>
+                            <span class="stat-label">Goal: Excellence</span>
+                        </div>
+                    </div>
+                    <div style="margin-top: 2rem;">
+                        <a href="./assets/Joyal_Joy_CV.pdf" download class="btn btn-primary" title="Download my Curriculum Vitae">
+                            Download CV <i class="fa-solid fa-file-pdf" style="margin-left: 8px;"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="about-highlights fade-left">
+                    <div class="highlight-item glass-panel">
+                        <div class="highlight-icon"><i class="fa-solid fa-laptop-code"></i></div>
+                        <h4>Frontend Excellence</h4>
+                        <p>Crafting intuitive, responsive, and highly interactive user interfaces using modern tools like React and Vanilla JS.</p>
+                    </div>
+                    <div class="highlight-item glass-panel">
+                        <div class="highlight-icon"><i class="fa-solid fa-server"></i></div>
+                        <h4>Backend Architecture</h4>
+                        <p>Designing secure, scalable APIs and robust server logic with C# and Python to power complex applications.</p>
+                    </div>
+                    <div class="highlight-item glass-panel">
+                        <div class="highlight-icon"><i class="fa-solid fa-chart-pie"></i></div>
+                        <h4>Data & Analytics</h4>
+                        <p>Leveraging tools like Power BI and Tableau to transform raw data into actionable insights.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="skills section">
+            <div class="section-header fade-up">
+                <h2>Technical <span class="gradient-text">Arsenal</span></h2>
+                <div class="section-line"></div>
+                <p class="section-subtitle">The tools and technologies I use to bring ideas to life.</p>
+            </div>
+            
+            <div class="skills-container fade-up delay-1">
+                <div class="skill-category glass-panel">
+                    <h3>Frontend Development</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag"><i class="fa-brands fa-react"></i> React</span>
+                        <span class="skill-tag"><i class="fa-brands fa-js"></i> JavaScript</span>
+                        <span class="skill-tag"><i class="fa-brands fa-html5"></i> HTML5</span>
+                        <span class="skill-tag"><i class="fa-brands fa-css3-alt"></i> CSS3</span>
+                        <span class="skill-tag"><i class="fa-brands fa-bootstrap"></i> Bootstrap</span>
+                        <span class="skill-tag"><i class="fa-brands fa-angular"></i> Angular</span>
+                        <span class="skill-tag">jQuery</span>
+                    </div>
+                </div>
+                
+                <div class="skill-category glass-panel">
+                    <h3>Backend & Database</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag"><i class="fa-solid fa-c"></i># C#</span>
+                        <span class="skill-tag"><i class="fa-brands fa-microsoft"></i> .NET</span>
+                        <span class="skill-tag"><i class="fa-brands fa-python"></i> Python</span>
+                        <span class="skill-tag">Django</span>
+                        <span class="skill-tag"><i class="fa-solid fa-database"></i> SQL</span>
+                        <span class="skill-tag">RESTful APIs</span>
+                    </div>
+                </div>
+
+                <div class="skill-category glass-panel">
+                    <h3>Data Tools</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag"><i class="fa-solid fa-table"></i> Excel</span>
+                        <span class="skill-tag">Tableau</span>
+                        <span class="skill-tag">Power BI</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="projects section">
+            <div class="section-header fade-up">
+                <h2>Featured <span class="gradient-text">Projects</span></h2>
+                <div class="section-line"></div>
+                <p class="section-subtitle">A selection of my recent open-source work and personal projects.</p>
+            </div>
+            
+            <div class="projects-grid" id="projects-container">
+                <!-- Projects will be dynamically injected here via script.js -->
+                <div class="loading-spinner"></div>
+            </div>
+            
+            <div class="more-projects fade-up delay-2">
+                <a href="https://github.com/codewithjoyal" target="_blank" class="btn btn-outline">View All on GitHub <i class="fa-brands fa-github"></i></a>
+            </div>
+        </section>
+
+        <!-- Experience & Education Section -->
+        <section id="experience" class="timeline-section section">
+            <div class="section-header fade-up">
+                <h2>Experience & <span class="gradient-text">Education</span></h2>
+                <div class="section-line"></div>
+            </div>
+            
+            <div class="timeline-container fade-up delay-1">
+                <div class="timeline">
+                    <!-- Experience Item 1 -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content glass-panel">
+                            <h3 class="timeline-title">Software Engineer</h3>
+                            <div class="timeline-meta">Astoria Software Exports Pvt. Ltd. • Kochi, Kerala • 08/2024 - Present</div>
+                            <p class="timeline-desc">Developing web applications using ASP.NET, C#, MVC, and JavaScript for car dealership sales solutions. Focusing on inventory management, sales tracking, and scalable performance.</p>
+                        </div>
+                    </div>
+
+                    <!-- Experience Item 2 -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content glass-panel">
+                            <h3 class="timeline-title">Jr. Software Developer</h3>
+                            <div class="timeline-meta">Innovtech Software Solutions • Kochi, Kerala • 03/2023 - 07/2024</div>
+                            <p class="timeline-desc">Contributed to finance-focused applications (Loan Origination Systems and portfolio analysis). Leveraged ASP.NET, C#, MVC, and Angular to deliver scalable solutions.</p>
+                        </div>
+                    </div>
+
+                    <!-- Experience Item 3 -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content glass-panel">
+                            <h3 class="timeline-title">Python Full Stack Developer</h3>
+                            <div class="timeline-meta">Soften technologies • Kochi, Kerala • 11/2021 - 12/2022</div>
+                            <p class="timeline-desc">Proficient in Django framework and front-end technologies (HTML, CSS, JavaScript). Completed intensive training and a 6-month internship.</p>
+                        </div>
+                    </div>
+
+                    <!-- Education Item 1 -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot education-dot"></div>
+                        <div class="timeline-content glass-panel">
+                            <h3 class="timeline-title">Diploma In Computer Engineering</h3>
+                            <div class="timeline-meta">NSS Polytechnic College, Pandalam • 2019 - 2021</div>
+                            <p class="timeline-desc">Comprehensive diploma program covering various core computer science subjects.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Education Item 2 -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot education-dot"></div>
+                        <div class="timeline-content glass-panel">
+                            <h3 class="timeline-title">Higher Secondary (Computer Science)</h3>
+                            <div class="timeline-meta">B J S M Madathil H S S, Karunagappally • 2017 - 2019</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact section">
+            <div class="section-header fade-up">
+                <h2>Let's <span class="gradient-text">Connect</span></h2>
+                <div class="section-line"></div>
+                <p class="section-subtitle">Feel free to reach out for collaborations, discussions, or just to say hi!</p>
+            </div>
+            
+            <div class="contact-box glass-panel fade-up delay-1">
+                <div class="contact-grid">
+                    <div class="contact-info-block">
+                        <h3>Get In Touch</h3>
+                        <p>I'm always open to discussing web development work, tech stack choices, or new partnership opportunities.</p>
+                        <ul class="contact-details-list">
+                            <li>
+                                <div class="icon-circle"><i class="fa-solid fa-envelope"></i></div>
+                                <div class="contact-text">
+                                    <span>Email me at</span>
+                                    <a href="mailto:codewithjoyal@gmail.com">codewithjoyal@gmail.com</a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="icon-circle"><i class="fa-solid fa-phone"></i></div>
+                                <div class="contact-text">
+                                    <span>Call me</span>
+                                    <a href="tel:+919605765665">+91 9605765665</a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="icon-circle"><i class="fa-solid fa-location-dot"></i></div>
+                                <div class="contact-text">
+                                    <span>Location</span>
+                                    <p>Kochi, Kerala, India</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="contact-form-block">
+                        <form id="contact-form" class="contact-form" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLScY_39RZrh880C5aYZJHgia57aWa2rwyacc78ssgCWN-Ir8KQ/formResponse" method="POST" target="hidden_iframe">
+                            <div class="input-group">
+                                <input type="text" name="entry.2005620554" placeholder="Your Name" required>
+                            </div>
+                            <div class="input-group">
+                                <input type="email" name="entry.1045781291" placeholder="Your Email" required>
+                            </div>
+                            <div class="input-group">
+                                <input type="text" name="entry.1166974658" placeholder="Your Phone Number" required>
+                            </div>
+                            <div class="input-group">
+                                <textarea name="entry.839337160" rows="5" placeholder="Comments" required></textarea>
+                            </div>
+                            <button type="submit" id="submit-btn" class="btn btn-primary w-100">Send Message <i class="fa-solid fa-paper-plane"></i></button>
+                        </form>
+                        
+                        <!-- Hidden iframe to prevent page redirection -->
+                        <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+                        
+                        <!-- Success Message Container -->
+                        <div id="form-success-msg" class="form-success-msg" style="display: none;">
+                            <div class="success-icon"><i class="fa-solid fa-circle-check"></i></div>
+                            <h4>Message Sent!</h4>
+                            <p>Thanks for reaching out. I will get back to you shortly.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">Joyal Joy<span>.</span></div>
+            <div class="footer-socials">
+                <a href="https://github.com/codewithjoyal" target="_blank"><i class="fa-brands fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/codewithjoyal/" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; <span id="current-year"></span> Joyal Joy. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Custom JS -->
+    <script src="script.js"></script>
+</body>
+</html>
