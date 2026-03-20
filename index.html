@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=3">
 </head>
 
 <body>
@@ -30,6 +30,133 @@
 
     <!-- Mouse Tracker Particles -->
     <canvas id="particle-canvas"></canvas>
+
+    <!-- Global Mascot Definitions -->
+    <svg style="width: 0; height: 0; position: absolute;" aria-hidden="true">
+        <defs>
+            <g id="mascot-walk-pose">
+                <g class="pose-walking-bob">
+                    <path class="arm-back" d="M 50 60 Q 55 90 50 100" stroke="#cbd5e1" stroke-width="10"
+                        stroke-linecap="round" fill="none" />
+                    <g class="leg-back">
+                        <path d="M 50 90 L 50 135" stroke="#94a3b8" stroke-width="12" stroke-linecap="round"
+                            fill="none" />
+                        <path d="M 45 135 L 62 135 C 65 135, 65 142, 60 142 L 45 142 Z" fill="#f8fafc" />
+                    </g>
+                    <rect x="42" y="50" width="16" height="45" rx="8" fill="#ffffff" />
+                    <circle cx="50" cy="30" r="14" fill="#ffffff" />
+                    <circle cx="56" cy="27" r="2" fill="#0f172a" />
+                    <g class="leg-front">
+                        <path d="M 50 90 L 50 135" stroke="#e2e8f0" stroke-width="12" stroke-linecap="round"
+                            fill="none" />
+                        <path d="M 45 135 L 62 135 C 65 135, 65 142, 60 142 L 45 142 Z" fill="#ffffff" />
+                    </g>
+                    <path class="arm-front" d="M 50 60 Q 45 90 50 100" stroke="#f1f5f9" stroke-width="10"
+                        stroke-linecap="round" fill="none" />
+                </g>
+            </g>
+            <g id="mascot-action-laptop">
+                <path d="M 50 60 L 60 85 L 75 87" stroke="#cbd5e1" stroke-width="10" stroke-linejoin="round"
+                    stroke-linecap="round" fill="none" />
+                <path d="M 50 90 L 72 90 L 72 120" stroke="#94a3b8" stroke-width="12" stroke-linejoin="round"
+                    stroke-linecap="round" fill="none" />
+                <path d="M 67 120 L 82 120 C 85 120, 85 127, 82 127 L 67 127 Z" fill="#f8fafc" />
+                <rect x="42" y="45" width="16" height="45" rx="8" fill="#ffffff" transform="rotate(-5, 50, 90)" />
+                <circle cx="52" cy="27" r="14" fill="#ffffff" transform="rotate(5, 50, 30)" />
+                <circle cx="58" cy="25" r="2" fill="#0f172a" />
+                <path d="M 50 90 L 70 90 L 70 125" stroke="#e2e8f0" stroke-width="12" stroke-linejoin="round"
+                    stroke-linecap="round" fill="none" />
+                <path d="M 65 125 L 80 125 C 83 125, 83 132, 80 132 L 65 132 Z" fill="#ffffff" />
+                <path class="type-arm" d="M 50 60 L 55 85 L 75 80" stroke="#f1f5f9" stroke-width="10"
+                    stroke-linejoin="round" stroke-linecap="round" fill="none" />
+                <path d="M 62 88 L 82 88 L 80 92 L 60 92 Z" fill="#334155" />
+                <path d="M 82 88 L 82 72 L 79 72 L 79 88 Z" fill="#0f172a" />
+                <path class="mini-screen-glow" d="M 79 74 L 70 80" stroke="#14b8a6" stroke-width="4" opacity="0.6" />
+            </g>
+            <g id="mascot-action-hello">
+                <path class="wave-arm" d="M 50 60 C 70 40, 75 10, 80 20" stroke="#cbd5e1" stroke-width="10"
+                    stroke-linecap="round" fill="none" />
+                <path d="M 50 90 L 50 135" stroke="#94a3b8" stroke-width="12" stroke-linecap="round" fill="none" />
+                <path d="M 45 135 L 62 135 C 65 135, 65 142, 60 142 L 45 142 Z" fill="#f8fafc" />
+                <rect x="42" y="50" width="16" height="45" rx="8" fill="#ffffff" />
+                <circle cx="50" cy="30" r="14" fill="#ffffff" />
+                <circle cx="56" cy="27" r="2" fill="#0f172a" />
+                <path d="M 50 90 L 55 135" stroke="#e2e8f0" stroke-width="12" stroke-linecap="round" fill="none" />
+                <path d="M 50 135 L 67 135 C 70 135, 70 142, 65 142 L 50 142 Z" fill="#ffffff" />
+                <path d="M 50 60 L 45 75 L 60 80" stroke="#f1f5f9" stroke-width="10" stroke-linejoin="round"
+                    stroke-linecap="round" fill="none" />
+                <rect x="55" y="65" width="12" height="15" rx="2" fill="#1e293b" />
+                <rect x="53" y="63" width="16" height="4" rx="1" fill="#f8fafc" />
+                <rect x="55" y="70" width="12" height="4" fill="#14b8a6" />
+                <path class="coffee-steam" d="M 58 60 Q 55 55 60 50 T 58 40" stroke="#cbd5e1" stroke-width="2"
+                    fill="none" opacity="0.6" />
+                <path class="coffee-steam-2" d="M 63 60 Q 60 55 65 50 T 63 40" stroke="#cbd5e1" stroke-width="2"
+                    fill="none" opacity="0.4" />
+            </g>
+            <g id="mascot-action-wrench">
+                <path class="lift-arm" d="M 50 60 L 70 80" stroke="#cbd5e1" stroke-width="10" stroke-linecap="round"
+                    fill="none" />
+                <path class="lift-wrench"
+                    d="M 75 90 L 55 50 C 50 40, 60 30, 70 40 L 65 45 C 70 50, 75 45, 70 40 L 90 80 Z" fill="#94a3b8" />
+                <path d="M 50 90 L 40 135" stroke="#94a3b8" stroke-width="12" stroke-linecap="round" fill="none" />
+                <path d="M 35 135 L 52 135 C 55 135, 55 142, 50 142 L 35 142 Z" fill="#f8fafc" />
+                <rect x="42" y="50" width="16" height="45" rx="8" fill="#ffffff" />
+                <circle cx="50" cy="30" r="14" fill="#ffffff" />
+                <circle cx="56" cy="27" r="2" fill="#0f172a" />
+                <path d="M 50 90 L 60 135" stroke="#e2e8f0" stroke-width="12" stroke-linecap="round" fill="none" />
+                <path d="M 55 135 L 72 135 C 75 135, 75 142, 70 142 L 55 142 Z" fill="#ffffff" />
+                <path class="lift-arm-front" d="M 50 60 L 65 60" stroke="#f1f5f9" stroke-width="10"
+                    stroke-linecap="round" fill="none" />
+            </g>
+            <g id="mascot-action-blocks">
+                <path d="M 50 90 L 40 130 L 70 130" stroke="#94a3b8" stroke-width="12" stroke-linejoin="round"
+                    stroke-linecap="round" fill="none" />
+                <rect x="75" y="115" width="20" height="20" fill="#6366f1" />
+                <rect x="75" y="95" width="20" height="20" fill="#ec4899" />
+                <rect x="42" y="50" width="16" height="45" rx="8" fill="#ffffff" transform="rotate(15, 50, 90)" />
+                <circle cx="58" cy="35" r="14" fill="#ffffff" />
+                <circle cx="64" cy="32" r="2" fill="#0f172a" />
+                <path d="M 50 90 L 65 90 L 65 135" stroke="#e2e8f0" stroke-width="12" stroke-linejoin="round"
+                    stroke-linecap="round" fill="none" />
+                <path d="M 60 135 L 77 135 C 80 135, 80 142, 75 142 L 60 142 Z" fill="#ffffff" />
+                <path d="M 45 60 Q 40 90 45 100" stroke="#cbd5e1" stroke-width="10" stroke-linecap="round"
+                    fill="none" />
+                <path class="stack-arm" d="M 45 60 L 65 70 L 75 80" stroke="#f1f5f9" stroke-width="10"
+                    stroke-linejoin="round" stroke-linecap="round" fill="none" />
+                <rect class="stack-block" x="65" y="70" width="20" height="20" fill="#14b8a6" />
+            </g>
+            <g id="mascot-action-book">
+                <path d="M 50 90 L 30 110 L 60 120" stroke="#94a3b8" stroke-width="12" stroke-linejoin="round"
+                    stroke-linecap="round" fill="none" />
+                <rect x="42" y="50" width="16" height="45" rx="8" fill="#ffffff" transform="rotate(10, 50, 90)" />
+                <circle cx="55" cy="32" r="14" fill="#ffffff" />
+                <circle cx="60" cy="34" r="2" fill="#0f172a" />
+                <path d="M 50 90 L 70 110 L 40 120" stroke="#e2e8f0" stroke-width="12" stroke-linejoin="round"
+                    stroke-linecap="round" fill="none" />
+                <path d="M 55 95 L 75 90 L 85 105 L 65 110 Z" fill="#1e293b" />
+                <path d="M 57 93 L 75 88 L 83 103 L 65 108 Z" fill="#f8fafc" />
+                <path class="book-flip" d="M 75 88 Q 80 80 83 103" stroke="#e2e8f0" fill="#ffffff" />
+                <path d="M 47 62 Q 55 85 60 95" stroke="#cbd5e1" stroke-width="10" stroke-linecap="round" fill="none" />
+                <path d="M 50 63 Q 65 85 75 95" stroke="#f1f5f9" stroke-width="10" stroke-linecap="round" fill="none" />
+            </g>
+            <g id="mascot-action-plane">
+                <path d="M 50 90 L 45 135" stroke="#94a3b8" stroke-width="12" stroke-linecap="round" fill="none" />
+                <path d="M 40 135 L 57 135 C 60 135, 60 142, 55 142 L 40 142 Z" fill="#f8fafc" />
+                <rect x="42" y="50" width="16" height="45" rx="8" fill="#ffffff" />
+                <circle cx="50" cy="30" r="14" fill="#ffffff" />
+                <circle cx="56" cy="27" r="2" fill="#0f172a" />
+                <path d="M 50 90 L 55 135" stroke="#e2e8f0" stroke-width="12" stroke-linecap="round" fill="none" />
+                <path d="M 50 135 L 67 135 C 70 135, 70 142, 65 142 L 50 142 Z" fill="#ffffff" />
+                <path d="M 50 60 L 70 50" stroke="#cbd5e1" stroke-width="10" stroke-linecap="round" fill="none" />
+                <g class="throw-arm">
+                    <path d="M 50 60 Q 30 50 35 30" stroke="#f1f5f9" stroke-width="10" stroke-linecap="round"
+                        fill="none" />
+                    <path d="M 35 30 L 45 10 L 50 20 Z" fill="#fcd34d" />
+                    <path d="M 35 30 L 50 20 L 45 25 Z" fill="#fbbf24" />
+                </g>
+            </g>
+        </defs>
+    </svg>
 
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
@@ -56,7 +183,19 @@
             <div class="hero-content fade-up">
                 <div class="badge">🚀 Software Engineer</div>
                 <h1 class="hero-title">
-                    Hi, I'm <span class="gradient-text">Joyal Joy</span>
+                    Hi, I'm <span class="gradient-text" style="position: relative; display: inline-block;">Joyal Joy
+                        <!-- New White Mascot -->
+                        <div class="mascot-container">
+                            <svg viewBox="0 0 100 150" class="mini-man-svg">
+                                <g class="pose-walking">
+                                    <use href="#mascot-walk-pose" />
+                                </g>
+                                <g class="pose-action">
+                                    <use href="#mascot-action-laptop" />
+                                </g>
+                            </svg>
+                        </div>
+                    </span>
                 </h1>
                 <h2 class="hero-subtitle">Crafting the Web</h2>
                 <p class="hero-description">
@@ -82,8 +221,56 @@
                 <div class="profile-card glass-panel">
                     <div class="profile-glow"></div>
                     <div class="profile-content">
-                        <div class="profile-avatar">
-                            <i class="fa-solid fa-user-astronaut"></i>
+                        <div class="profile-avatar developer-avatar">
+                            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="animated-dev">
+                                <!-- Background Glow -->
+                                <circle cx="100" cy="100" r="80" fill="url(#devGlow)" opacity="0.5"
+                                    class="pulsing-glow" />
+
+                                <!-- Table Edge -->
+                                <rect x="30" y="160" width="140" height="8" fill="#475569" rx="4" />
+
+                                <!-- Laptop Base & Screen -->
+                                <path d="M 60 160 L 50 165 L 150 165 L 140 160 Z" fill="#1e293b" />
+                                <rect x="65" y="115" width="55" height="45" fill="#0f172a" rx="4"
+                                    transform="rotate(-5, 100, 160)" />
+                                <rect class="screen-glow" x="68" y="118" width="49" height="39" fill="#020617" rx="2"
+                                    transform="rotate(-5, 100, 160)" />
+
+                                <!-- Code Lines animating -->
+                                <g class="code-lines" transform="rotate(-5, 100, 160)">
+                                    <rect class="code-line cd-1" x="72" y="125" width="20" height="2" fill="#6366f1" />
+                                    <rect class="code-line cd-2" x="72" y="132" width="30" height="2" fill="#ec4899" />
+                                    <rect class="code-line cd-3" x="75" y="139" width="25" height="2" fill="#14b8a6" />
+                                    <rect class="code-line cd-2" x="72" y="146" width="15" height="2" fill="#6366f1" />
+                                    <rect class="code-line cd-1" x="72" y="153" width="22" height="2" fill="#f8fafc" />
+                                </g>
+
+                                <!-- Developer Body (Hoodie) -->
+                                <path class="dev-body" d="M 60 180 C 60 100, 140 100, 130 180"
+                                    fill="url(#hoodieGrad)" />
+
+                                <!-- Developer Head -->
+                                <circle class="dev-head" cx="120" cy="85" r="22" fill="#1e1e2f" />
+                                <path class="dev-hood" d="M 100 85 C 100 60, 140 60, 140 85" fill="#6366f1" />
+
+                                <!-- Typing Hands -->
+                                <g class="typing-hands">
+                                    <circle class="hand-left" cx="80" cy="153" r="6" fill="#fcd34d" />
+                                    <circle class="hand-right" cx="105" cy="155" r="6" fill="#fcd34d" />
+                                </g>
+
+                                <defs>
+                                    <radialGradient id="devGlow">
+                                        <stop offset="0%" stop-color="#6366f1" stop-opacity="0.8" />
+                                        <stop offset="100%" stop-color="#6366f1" stop-opacity="0" />
+                                    </radialGradient>
+                                    <linearGradient id="hoodieGrad" x1="0" y1="0" x2="0" y2="1">
+                                        <stop offset="0%" stop-color="#4f46e5" />
+                                        <stop offset="100%" stop-color="#312e81" />
+                                    </linearGradient>
+                                </defs>
+                            </svg>
                         </div>
                         <h3>Joyal Joy</h3>
                         <p class="profile-role">Full Stack Developer</p>
@@ -105,7 +292,18 @@
         <!-- About Section -->
         <section id="about" class="about section">
             <div class="section-header fade-up">
-                <h2>About <span class="gradient-text">Me</span></h2>
+                <h2><span style="position: relative; display: inline-block;">About <span class="gradient-text">Me</span>
+                        <div class="mascot-container">
+                            <svg viewBox="0 0 100 150" class="mini-man-svg">
+                                <g class="pose-walking">
+                                    <use href="#mascot-walk-pose" />
+                                </g>
+                                <g class="pose-action">
+                                    <use href="#mascot-action-hello" />
+                                </g>
+                            </svg>
+                        </div>
+                    </span></h2>
                 <div class="section-line"></div>
             </div>
             <div class="about-content grid-2-col">
@@ -139,7 +337,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="about-highlights fade-left">
+                <div class="about-highlights zoom-in">
                     <div class="highlight-item glass-panel">
                         <div class="highlight-icon"><i class="fa-solid fa-laptop-code"></i></div>
                         <h4>Frontend Excellence</h4>
@@ -165,12 +363,24 @@
         <!-- Skills Section -->
         <section id="skills" class="skills section">
             <div class="section-header fade-up">
-                <h2>Technical <span class="gradient-text">Arsenal</span></h2>
+                <h2><span style="position: relative; display: inline-block;">Technical <span
+                            class="gradient-text">Arsenal</span>
+                        <div class="mascot-container">
+                            <svg viewBox="0 0 100 150" class="mini-man-svg">
+                                <g class="pose-walking">
+                                    <use href="#mascot-walk-pose" />
+                                </g>
+                                <g class="pose-action">
+                                    <use href="#mascot-action-wrench" />
+                                </g>
+                            </svg>
+                        </div>
+                    </span></h2>
                 <div class="section-line"></div>
                 <p class="section-subtitle">The tools and technologies I use to bring ideas to life.</p>
             </div>
 
-            <div class="skills-container fade-up delay-1">
+            <div class="skills-container zoom-in delay-1">
                 <div class="skill-category glass-panel">
                     <h3>Frontend Development</h3>
                     <div class="skill-tags">
@@ -210,7 +420,19 @@
         <!-- Projects Section -->
         <section id="projects" class="projects section">
             <div class="section-header fade-up">
-                <h2>Featured <span class="gradient-text">Projects</span></h2>
+                <h2><span style="position: relative; display: inline-block;">Featured <span
+                            class="gradient-text">Projects</span>
+                        <div class="mascot-container">
+                            <svg viewBox="0 0 100 150" class="mini-man-svg">
+                                <g class="pose-walking">
+                                    <use href="#mascot-walk-pose" />
+                                </g>
+                                <g class="pose-action">
+                                    <use href="#mascot-action-blocks" />
+                                </g>
+                            </svg>
+                        </div>
+                    </span></h2>
                 <div class="section-line"></div>
                 <p class="section-subtitle">A selection of my recent open-source work and personal projects.</p>
             </div>
@@ -229,14 +451,26 @@
         <!-- Experience & Education Section -->
         <section id="experience" class="timeline-section section">
             <div class="section-header fade-up">
-                <h2>Experience & <span class="gradient-text">Education</span></h2>
+                <h2><span style="position: relative; display: inline-block;">Experience & <span
+                            class="gradient-text">Education</span>
+                        <div class="mascot-container">
+                            <svg viewBox="0 0 100 150" class="mini-man-svg">
+                                <g class="pose-walking">
+                                    <use href="#mascot-walk-pose" />
+                                </g>
+                                <g class="pose-action">
+                                    <use href="#mascot-action-book" />
+                                </g>
+                            </svg>
+                        </div>
+                    </span></h2>
                 <div class="section-line"></div>
             </div>
 
-            <div class="timeline-container fade-up delay-1">
+            <div class="timeline-container zoom-in delay-1">
                 <div class="timeline">
                     <!-- Experience Item 1 -->
-                    <div class="timeline-item">
+                    <div class="timeline-item flip-up delay-1">
                         <div class="timeline-dot"></div>
                         <div class="timeline-content glass-panel">
                             <h3 class="timeline-title">Software Engineer</h3>
@@ -249,7 +483,7 @@
                     </div>
 
                     <!-- Experience Item 2 -->
-                    <div class="timeline-item">
+                    <div class="timeline-item flip-up delay-2">
                         <div class="timeline-dot"></div>
                         <div class="timeline-content glass-panel">
                             <h3 class="timeline-title">Jr. Software Developer</h3>
@@ -262,7 +496,7 @@
                     </div>
 
                     <!-- Experience Item 3 -->
-                    <div class="timeline-item">
+                    <div class="timeline-item flip-up delay-3">
                         <div class="timeline-dot"></div>
                         <div class="timeline-content glass-panel">
                             <h3 class="timeline-title">Python Full Stack Developer</h3>
@@ -273,7 +507,7 @@
                     </div>
 
                     <!-- Education Item 1 -->
-                    <div class="timeline-item">
+                    <div class="timeline-item flip-up delay-1">
                         <div class="timeline-dot education-dot"></div>
                         <div class="timeline-content glass-panel">
                             <h3 class="timeline-title">Diploma In Computer Engineering</h3>
@@ -284,7 +518,7 @@
                     </div>
 
                     <!-- Education Item 2 -->
-                    <div class="timeline-item">
+                    <div class="timeline-item flip-up delay-2">
                         <div class="timeline-dot education-dot"></div>
                         <div class="timeline-content glass-panel">
                             <h3 class="timeline-title">Higher Secondary (Computer Science)</h3>
@@ -298,13 +532,25 @@
         <!-- Contact Section -->
         <section id="contact" class="contact section">
             <div class="section-header fade-up">
-                <h2>Let's <span class="gradient-text">Connect</span></h2>
+                <h2><span style="position: relative; display: inline-block;">Let's <span
+                            class="gradient-text">Connect</span>
+                        <div class="mascot-container">
+                            <svg viewBox="0 0 100 150" class="mini-man-svg">
+                                <g class="pose-walking">
+                                    <use href="#mascot-walk-pose" />
+                                </g>
+                                <g class="pose-action">
+                                    <use href="#mascot-action-plane" />
+                                </g>
+                            </svg>
+                        </div>
+                    </span></h2>
                 <div class="section-line"></div>
                 <p class="section-subtitle">Feel free to reach out for collaborations, discussions, or just to say hi!
                 </p>
             </div>
 
-            <div class="contact-box glass-panel fade-up delay-1">
+            <div class="contact-box glass-panel bounce-in delay-1">
                 <div class="contact-grid">
                     <div class="contact-info-block">
                         <h3>Get In Touch</h3>
@@ -390,6 +636,9 @@
             <p>&copy; <span id="current-year"></span> Joyal Joy. All Rights Reserved.</p>
         </div>
     </footer>
+
+    <!-- Three.js for 3D Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
     <!-- Custom JS -->
     <script src="script.js"></script>

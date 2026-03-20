@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // ----------------------------------------------------
     // Intersection Observer for Scroll Animations
     // ----------------------------------------------------
-    const animationSelectors = ['.fade-up', '.fade-left', '.fade-right'];
+    const animationSelectors = ['.fade-up', '.fade-left', '.fade-right', '.zoom-in', '.flip-up', '.bounce-in'];
     
     // Fallback for older browsers
     if (!('IntersectionObserver' in window)) {
@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 else techIcon = '<i class="fa-solid fa-code"></i>';
 
                 const html = `
-                    <div class="project-card glass-panel fade-up">
+                    <div class="project-card glass-panel zoom-in">
                         <div class="project-header">
                             <i class="fa-regular fa-folder folder-icon"></i>
                             <div class="project-links">
@@ -169,9 +169,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     });
                 }, { threshold: 0.1 });
                 
-                container.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+                container.querySelectorAll('.zoom-in').forEach(el => observer.observe(el));
             } else {
-                container.querySelectorAll('.fade-up').forEach(el => el.classList.add('fade-in'));
+                container.querySelectorAll('.zoom-in').forEach(el => el.classList.add('fade-in'));
             }
 
         } catch (error) {
@@ -254,141 +254,130 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ----------------------------------------------------
-    // Mouse Tracker Particle Network Effect
+    // Three.js 3D Particle Animation Background
     // ----------------------------------------------------
     const canvas = document.getElementById('particle-canvas');
-    if (canvas) {
-        const ctx = canvas.getContext('2d');
-        
-        // Configuration
-        let particles = [];
-        const particleCount = 80; // Adjust for density
-        const connectDistance = 120;
-        const baseSize = 2;
-        const particleSpeed = 0.5;
-        
-        let mouse = {
-            x: null,
-            y: null,
-            radius: 150
-        };
+    if (canvas && window.THREE) {
+        // Scene Setup
+        const scene = new THREE.Scene();
+        // Add subtle fog to fade particles in the distance
+        scene.fog = new THREE.FogExp2(0x0a0a0f, 0.0008);
 
-        // Resize Canvas
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 2000);
+        camera.position.z = 1000;
+
+        const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+        renderer.setPixelRatio(window.devicePixelRatio);
+        renderer.setSize(window.innerWidth, window.innerHeight);
+
+        // Particle Geometry Setup
+        const particleCount = 2500;
+        const geometry = new THREE.BufferGeometry();
+        const positions = new Float32Array(particleCount * 3);
+        const colors = new Float32Array(particleCount * 3);
+
+        const themeColors = [
+            new THREE.Color('#6366f1'), // Indigo (Primary)
+            new THREE.Color('#ec4899'), // Pink (Secondary)
+            new THREE.Color('#14b8a6')  // Teal (Accent)
+        ];
+
+        for (let i = 0; i < particleCount; i++) {
+            // Generating a field of particles within a giant sphere
+            const r = 2000;
+            const x = r * (Math.random() - 0.5);
+            const y = r * (Math.random() - 0.5);
+            const z = r * (Math.random() - 0.5);
+
+            positions[i * 3] = x;
+            positions[i * 3 + 1] = y;
+            positions[i * 3 + 2] = z;
+
+            // Assign random theme color to each particle
+            const color = themeColors[Math.floor(Math.random() * themeColors.length)];
+            colors[i * 3] = color.r;
+            colors[i * 3 + 1] = color.g;
+            colors[i * 3 + 2] = color.b;
         }
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
 
-        // Mouse Event Listeners
-        window.addEventListener('mousemove', (event) => {
-            mouse.x = event.x;
-            mouse.y = event.y;
+        geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+        geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+
+        // Create elegant glowing circular sprite via Canvas for particle texture
+        const canvasSprite = document.createElement('canvas');
+        canvasSprite.width = 32;
+        canvasSprite.height = 32;
+        const context = canvasSprite.getContext('2d');
+        const gradient = context.createRadialGradient(16, 16, 0, 16, 16, 16);
+        gradient.addColorStop(0, 'rgba(255, 255, 255, 1)');
+        gradient.addColorStop(0.2, 'rgba(255, 255, 255, 0.8)');
+        gradient.addColorStop(0.4, 'rgba(255, 255, 255, 0.3)');
+        gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+        context.fillStyle = gradient;
+        context.fillRect(0, 0, 32, 32);
+        
+        const particleTexture = new THREE.CanvasTexture(canvasSprite);
+
+        // Particle Material
+        const material = new THREE.PointsMaterial({
+            size: 15,
+            vertexColors: true,
+            map: particleTexture,
+            blending: THREE.AdditiveBlending,
+            depthWrite: false,
+            transparent: true,
+            opacity: 0.8
         });
 
-        window.addEventListener('mouseout', () => {
-            mouse.x = undefined;
-            mouse.y = undefined;
+        const particleSystem = new THREE.Points(geometry, material);
+        scene.add(particleSystem);
+
+        // Interaction State for Parallax Parallax Effect
+        let mouseX = 0;
+        let mouseY = 0;
+        
+        let windowHalfX = window.innerWidth / 2;
+        let windowHalfY = window.innerHeight / 2;
+
+        document.addEventListener('mousemove', (event) => {
+            mouseX = (event.clientX - windowHalfX) * 0.5;
+            mouseY = (event.clientY - windowHalfY) * 0.5;
         });
 
-        // Particle Class
-        class Particle {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                // Move in random directions
-                this.directionX = (Math.random() - 0.5) * particleSpeed;
-                this.directionY = (Math.random() - 0.5) * particleSpeed;
-                this.size = Math.random() * baseSize + 1;
-                // Base colors from theme
-                const colors = ['#6366f1', '#ec4899', '#14b8a6'];
-                this.color = colors[Math.floor(Math.random() * colors.length)];
+        // Touch support for Mobile parallax
+        document.addEventListener('touchmove', (event) => {
+            if (event.touches.length > 0) {
+                mouseX = (event.touches[0].clientX - windowHalfX) * 1.5;
+                mouseY = (event.touches[0].clientY - windowHalfY) * 1.5;
             }
+        }, { passive: true });
 
-            draw() {
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fillStyle = this.color;
-                ctx.fill();
-            }
+        // Handle Window Resize
+        window.addEventListener('resize', () => {
+            windowHalfX = window.innerWidth / 2;
+            windowHalfY = window.innerHeight / 2;
 
-            update() {
-                // Bounce off edges
-                if (this.x > canvas.width || this.x < 0) {
-                    this.directionX = -this.directionX;
-                }
-                if (this.y > canvas.height || this.y < 0) {
-                    this.directionY = -this.directionY;
-                }
-
-                // Collision detection with mouse (push particles away gently)
-                if (mouse.x !== undefined && mouse.y !== undefined) {
-                    let dx = mouse.x - this.x;
-                    let dy = mouse.y - this.y;
-                    let distance = Math.sqrt(dx * dx + dy * dy);
-                    
-                    if (distance < mouse.radius) {
-                        const forceDirectionX = dx / distance;
-                        const forceDirectionY = dy / distance;
-                        const force = (mouse.radius - distance) / mouse.radius;
-                        // Move away from mouse
-                        this.x -= forceDirectionX * force * 2;
-                        this.y -= forceDirectionY * force * 2;
-                    }
-                }
-
-                // Move particle
-                this.x += this.directionX;
-                this.y += this.directionY;
-
-                this.draw();
-            }
-        }
-
-        // Initialize particles
-        function init() {
-            particles = [];
-            for (let i = 0; i < particleCount; i++) {
-                particles.push(new Particle());
-            }
-        }
-
-        // Connect particles with lines
-        function connect() {
-            for (let a = 0; a < particles.length; a++) {
-                for (let b = a; b < particles.length; b++) {
-                    let dx = particles[a].x - particles[b].x;
-                    let dy = particles[a].y - particles[b].y;
-                    let distance = Math.sqrt(dx * dx + dy * dy);
-                    
-                    if (distance < connectDistance) {
-                        // Opacity based on distance
-                        let opacity = 1 - (distance / connectDistance);
-                        ctx.strokeStyle = `rgba(148, 163, 184, ${opacity * 0.2})`;
-                        ctx.lineWidth = 1;
-                        ctx.beginPath();
-                        ctx.moveTo(particles[a].x, particles[a].y);
-                        ctx.lineTo(particles[b].x, particles[b].y);
-                        ctx.stroke();
-                    }
-                }
-            }
-        }
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
 
         // Animation Loop
         function animate() {
             requestAnimationFrame(animate);
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            for (let i = 0; i < particles.length; i++) {
-                particles[i].update();
-            }
-            connect();
+            // Subtle auto-rotation of the entire particle cloud
+            particleSystem.rotation.y += 0.001;
+            particleSystem.rotation.x += 0.0005;
+
+            // Smooth parallax formula: current + (target - current) * easing
+            camera.position.x += (mouseX - camera.position.x) * 0.02;
+            camera.position.y += (-mouseY - camera.position.y) * 0.02;
+            camera.lookAt(scene.position);
+
+            renderer.render(scene, camera);
         }
 
-        // Start
-        init();
         animate();
     }
 });

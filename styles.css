@@ -505,6 +505,77 @@ h1, h2, h3, h4, h5, h6 {
     border: 4px solid rgba(255,255,255,0.1);
 }
 
+/* Developer SVG Animations */
+.developer-avatar {
+    width: 140px;
+    height: 140px;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+.animated-dev {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+}
+
+.pulsing-glow {
+    animation: pulseGlow 3s infinite alternate ease-in-out;
+}
+
+@keyframes pulseGlow {
+    0% { transform: scale(0.9); opacity: 0.4; }
+    100% { transform: scale(1.1); opacity: 0.8; }
+}
+
+.typing-hands .hand-left {
+    animation: typeLeft 0.3s infinite alternate;
+}
+
+.typing-hands .hand-right {
+    animation: typeRight 0.4s infinite alternate -0.2s;
+}
+
+@keyframes typeLeft {
+    0% { transform: translateY(0) translateX(0); }
+    100% { transform: translateY(-4px) translateX(-2px); }
+}
+
+@keyframes typeRight {
+    0% { transform: translateY(0) translateX(0); }
+    100% { transform: translateY(-3px) translateX(2px); }
+}
+
+.dev-head {
+    animation: bobHead 2s infinite alternate ease-in-out;
+    transform-origin: 120px 85px; /* Center of head */
+}
+
+.dev-hood {
+    animation: bobHead 2s infinite alternate ease-in-out;
+    transform-origin: 120px 85px;
+}
+
+@keyframes bobHead {
+    0% { transform: rotate(-2deg) translateY(0); }
+    100% { transform: rotate(3deg) translateY(2px); }
+}
+
+.code-line {
+    animation: codeScroll 1.5s infinite linear;
+}
+
+.cd-1 { animation-duration: 2s; }
+.cd-2 { animation-duration: 1.2s; }
+.cd-3 { animation-duration: 2.5s; }
+
+@keyframes codeScroll {
+    0% { opacity: 0.4; transform: translateX(-2px); }
+    50% { opacity: 1; transform: translateX(0); }
+    100% { opacity: 0.4; transform: translateX(2px); }
+}
+
 .profile-card h3 {
     font-size: 1.8rem;
     margin-bottom: 5px;
@@ -1047,10 +1118,159 @@ h1, h2, h3, h4, h5, h6 {
     transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
+.zoom-in {
+    opacity: 0;
+    transform: scale(0.85);
+    transition: opacity 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275), transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.flip-up {
+    opacity: 0;
+    transform: perspective(600px) rotateX(-90deg);
+    transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform-origin: top center;
+}
+
+.bounce-in {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
 .fade-in {
     opacity: 1;
-    transform: translate(0, 0);
+    transform: translate(0, 0) scale(1) rotateX(0deg);
 }
+
+/* Multi-Section Mascot Container */
+.mascot-container {
+    position: absolute;
+    bottom: 70%;
+    left: 0;
+    width: 38px;
+    height: 55px;
+    z-index: 10;
+    pointer-events: none;
+    opacity: 0;
+    animation: mascotWalkSequence 15s infinite linear;
+    animation-play-state: paused;
+}
+
+.mini-man-svg {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+}
+
+@keyframes mascotWalkSequence {
+    0% { left: -30px; transform: translateX(-100%); opacity: 0; }
+    2% { left: -30px; transform: translateX(-100%); opacity: 1; }
+    40% { left: 100%; transform: translateX(-80%); opacity: 1; }
+    90% { left: 100%; transform: translateX(-80%); opacity: 1; }
+    94% { left: 100%; transform: translateX(-80%); opacity: 0; }
+    100% { left: -30px; transform: translateX(-100%); opacity: 0; }
+}
+
+.pose-walking {
+    animation: showWalk 15s infinite step-end;
+    animation-play-state: paused;
+}
+
+.pose-walking-bob {
+    animation: bodyBob 0.25s infinite alternate ease-in-out;
+    transform-origin: 50px 90px;
+}
+
+.pose-action {
+    opacity: 0;
+    animation: showAction 15s infinite step-end;
+    animation-play-state: paused;
+}
+
+/* Play animations only when scrolled into view */
+.fade-in .mascot-container,
+.fade-in .mascot-container .pose-walking,
+.fade-in .mascot-container .pose-action {
+    animation-play-state: running;
+}
+
+@keyframes showWalk {
+    0% { opacity: 1; }
+    40% { opacity: 0; }
+    90% { opacity: 0; }
+    91% { opacity: 1; }
+}
+
+@keyframes showAction {
+    0% { opacity: 0; }
+    40% { opacity: 1; }
+    90% { opacity: 1; }
+    94% { opacity: 0; }
+}
+
+/* Individual Mascot Actions */
+
+/* 1. Laptop (Hero) */
+.type-arm { animation: typeArmAnim 0.15s infinite alternate -0.1s; }
+.mini-screen-glow { animation: miniGlow 1.5s infinite alternate ease-in-out; }
+@keyframes typeArmAnim { 0% { transform: rotate(0) translateY(0); } 100% { transform: rotate(-2deg) translateY(2px); } }
+@keyframes miniGlow { 0% { opacity: 0.3; } 100% { opacity: 0.8; } }
+
+/* 2. Hello/Coffee (About) - Replaced Thinking */
+.wave-arm { animation: waveAnim 1s infinite alternate ease-in-out; transform-origin: 50px 60px; }
+@keyframes waveAnim { 0% { transform: rotate(-10deg); } 100% { transform: rotate(20deg); } }
+
+.coffee-steam { animation: steamRise 2s infinite ease-out; }
+.coffee-steam-2 { animation: steamRise 2s infinite ease-out 1s; }
+@keyframes steamRise { 0% { transform: translateY(0); opacity: 0.6; } 100% { transform: translateY(-8px); opacity: 0; } }
+
+/* 3. Wrench (Skills) */
+.lift-wrench { animation: wrenchAnim 1s infinite alternate; transform-origin: 75px 90px; }
+.lift-arm, .lift-arm-front { animation: wrenchAnim 1s infinite alternate; transform-origin: 50px 60px; }
+@keyframes wrenchAnim { 0% { transform: rotate(-8deg); } 100% { transform: rotate(8deg); } }
+
+/* 4. Blocks (Projects) */
+.stack-arm { animation: stackAnim 2s infinite ease-in-out; transform-origin: 45px 60px; }
+.stack-block { animation: blockAnim 2s infinite ease-in-out; }
+@keyframes stackAnim { 0%, 100% { transform: rotate(0); } 50% { transform: rotate(40deg); } }
+@keyframes blockAnim { 0%, 100% { transform: translate(0, 0); opacity: 1; } 50% { transform: translate(12px, 8px); opacity: 1; } 60% { opacity: 0; } }
+
+/* 5. Book (Education) */
+.book-flip { animation: flipAnim 2s infinite ease-in; transform-origin: 75px 88px; }
+@keyframes flipAnim { 0% { transform: scaleX(1); opacity: 1; } 100% { transform: scaleX(-0.5); opacity: 0.3; } }
+
+/* 6. Plane (Contact) */
+.throw-arm { animation: windUp 3s infinite ease-out; transform-origin: 50px 60px; }
+@keyframes windUp { 0%, 50% { transform: rotate(0); } 70% { transform: rotate(-30deg); } 80% { transform: rotate(50deg); } 100% { transform: rotate(0); } }
+
+.mini-screen-glow {
+    animation: miniGlow 1.5s infinite alternate ease-in-out;
+}
+
+@keyframes typeArmAnim {
+    0% { transform: rotate(0) translateY(0); }
+    100% { transform: rotate(-2deg) translateY(2px); }
+}
+
+@keyframes miniGlow {
+    0% { opacity: 0.3; }
+    100% { opacity: 0.8; }
+}
+
+@keyframes stride {
+    0% { transform: rotate(35deg); }
+    100% { transform: rotate(-35deg); }
+}
+
+@keyframes bodyBob {
+    0% { transform: translateY(0px) rotate(2deg); }
+    100% { transform: translateY(-4px) rotate(2deg); }
+}
+
+.leg-front { animation: stride 0.8s infinite alternate ease-in-out; transform-origin: 50px 90px; }
+.leg-back { animation: stride 0.8s infinite alternate-reverse ease-in-out; transform-origin: 50px 90px; }
+.arm-front { animation: stride 0.8s infinite alternate-reverse ease-in-out; transform-origin: 50px 60px; }
+.arm-back { animation: stride 0.8s infinite alternate ease-in-out; transform-origin: 50px 60px; }
 
 .delay-1 { transition-delay: 0.1s; }
 .delay-2 { transition-delay: 0.2s; }
